@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#020610">
+  <meta name="description" content="Reck3d — developer, builder, and digital creator.">
+  <title>Reck3d — Portfolio</title>
+  <style>
+    /* FOUNDATION */
+    :root { --ice:#8edcff; --ice-bright:#d8f5ff; --ink:#02050b; --muted:#8ca0b3; --line:rgba(166,224,255,.16); --glass:rgba(7,17,29,.58); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:#f5fbff; background:#02050b; font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; overflow-x:hidden; }
+    body::before { content:""; position:fixed; inset:0; z-index:-3; background:radial-gradient(circle at 18% 20%,rgba(27,92,132,.16),transparent 30%),radial-gradient(circle at 82% 67%,rgba(34,92,125,.1),transparent 32%),linear-gradient(145deg,#010307 0%,#03101c 54%,#01050a 100%); }
+    body::after { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.64) 100%); }
+    a { color:inherit; }
+    #snow { position:fixed; inset:0; width:100%; height:100%; z-index:-2; pointer-events:none; }
+    .skip { position:fixed; top:12px; left:12px; z-index:20; transform:translateY(-160%); padding:.65rem 1rem; color:#00101b; background:var(--ice-bright); border-radius:5px; font-weight:700; text-decoration:none; transition:transform .2s; }
+    .skip:focus { transform:none; }
+
+    /* HERO */
+    .hero { min-height:100svh; display:grid; place-items:center; padding:5rem 1.5rem; position:relative; }
+    .hero-inner { width:min(980px,100%); text-align:center; }
+    .hero-plate { --hero-x:50%; --hero-y:50%; position:relative; isolation:isolate; overflow:hidden; padding:clamp(3rem,7vw,5.8rem) clamp(1.3rem,6vw,5rem); border:1px solid rgba(168,225,255,.19); border-radius:16px; background:linear-gradient(145deg,rgba(11,25,40,.72),rgba(3,10,19,.6)); box-shadow:0 28px 90px rgba(0,0,0,.42),0 0 45px rgba(87,187,231,.07),inset 0 1px rgba(255,255,255,.045); backdrop-filter:blur(19px); transform-style:preserve-3d; will-change:transform; }
+    .hero-plate::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(520px circle at var(--hero-x) var(--hero-y),rgba(163,228,255,.12),transparent 48%); opacity:.78; }
+    .hero-plate::after { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; border-radius:inherit; box-shadow:inset 0 0 80px rgba(56,137,181,.035); }
+    .eyebrow { display:flex; align-items:center; justify-content:center; gap:.65rem; margin:0 0 1.2rem; color:var(--muted); font:600 .7rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:.23em; text-transform:uppercase; }
+    .eyebrow::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--ice); box-shadow:0 0 14px var(--ice); animation:pulse 2.4s ease-in-out infinite; }
+    .name { margin:0; min-height:1.05em; font-size:clamp(4.5rem,15vw,11rem); line-height:.88; letter-spacing:-.075em; font-weight:750; text-shadow:0 0 38px rgba(112,208,255,.14); }
+    .name .resolved { color:#fff; }
+    .name .scrambled { color:#90b8ca; opacity:.72; }
+    .tagline { max-width:540px; margin:1.8rem auto 2.1rem; color:#9cacba; font-size:clamp(.95rem,2vw,1.1rem); }
+    .quick-links { display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; }
+    .quick-links a { position:relative; padding:.68rem 1rem; border:1px solid var(--line); border-radius:6px; background:rgba(7,18,29,.42); color:#d7e4ea; text-decoration:none; font-size:.78rem; letter-spacing:.06em; backdrop-filter:blur(12px); transition:color .25s,border-color .25s,box-shadow .25s,transform .25s; }
+    .quick-links a:hover,.quick-links a:focus-visible { color:#fff; border-color:rgba(142,220,255,.55); box-shadow:0 0 24px rgba(93,196,242,.12); transform:translateY(-2px); outline:none; }
+    .scroll-mark { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:#647988; font:600 .62rem ui-monospace,monospace; letter-spacing:.22em; text-transform:uppercase; writing-mode:vertical-rl; }
+    .scroll-mark::after { content:""; display:block; width:1px; height:42px; margin:.8rem auto 0; background:linear-gradient(var(--ice),transparent); }
+
+    /* PORTFOLIO CARDS */
+    main { width:min(1120px,calc(100% - 2.5rem)); margin:auto; padding:8rem 0 5rem; }
+    .section { margin-bottom:8rem; scroll-margin-top:4rem; }
+    .section-head { display:grid; grid-template-columns:56px 1fr; align-items:start; gap:1rem; margin-bottom:2rem; }
+    .section-index { color:var(--ice); font:500 .68rem ui-monospace,monospace; letter-spacing:.14em; padding-top:.48rem; }
+    h2 { margin:0; font-size:clamp(1.8rem,5vw,3.4rem); line-height:1.1; letter-spacing:-.045em; font-weight:650; }
+    .section-intro { margin:.85rem 0 0; max-width:590px; color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:1rem; }
+    .glass { --mx:50%; --my:50%; position:relative; grid-column:span 6; min-height:260px; overflow:hidden; padding:clamp(1.35rem,3vw,2rem); border:1px solid var(--line); border-radius:12px; background:linear-gradient(145deg,rgba(16,31,46,.68),rgba(5,13,23,.52)); backdrop-filter:blur(18px); box-shadow:0 20px 70px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.035); transform-style:preserve-3d; transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s; }
+    .glass::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(380px circle at var(--mx) var(--my),rgba(160,226,255,.11),transparent 45%); opacity:0; transition:opacity .35s; }
+    .glass:hover { border-color:rgba(142,220,255,.34); box-shadow:0 24px 80px rgba(0,0,0,.35),0 0 32px rgba(70,172,220,.06); }
+    .glass:hover::after { opacity:1; }
+    .glass.wide { grid-column:span 12; min-height:0; }
+    .card-meta { display:flex; justify-content:space-between; gap:1rem; color:#7890a1; font:500 .65rem ui-monospace,monospace; letter-spacing:.12em; text-transform:uppercase; }
+    .glass h3 { margin:3rem 0 .7rem; font-size:1.35rem; letter-spacing:-.025em; }
+    .glass p { margin:0; color:#9aacb9; max-width:58ch; }
+    .arrow { color:var(--ice); font-size:1.1rem; transition:transform .25s; }
+    .glass:hover .arrow { transform:translate(3px,-3px); }
+    .project-link { position:absolute; inset:0; z-index:3; }
+    .project-link:focus-visible { outline:2px solid var(--ice); outline-offset:-5px; border-radius:12px; }
+    .skills { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1.7rem; }
+    .skill { padding:.48rem .72rem; border:1px solid rgba(156,216,245,.14); border-radius:5px; color:#b7cbd5; background:rgba(3,10,18,.38); font:500 .72rem ui-monospace,monospace; }
+    .about-copy { display:grid; grid-template-columns:1.1fr .9fr; gap:3rem; align-items:end; }
+    .about-copy .lead { color:#dbe7ec; font-size:clamp(1.25rem,3vw,2rem); line-height:1.35; letter-spacing:-.025em; }
+    .status-list { margin:0; padding:0; list-style:none; }
+    .status-list li { display:flex; justify-content:space-between; gap:1rem; padding:.7rem 0; border-bottom:1px solid rgba(255,255,255,.06); color:#869aa8; font-size:.82rem; }
+    .status-list strong { color:#cfe1e9; font-weight:500; }
+    .contact { text-align:center; padding:5rem 2rem; }
+    .contact h2 { font-size:clamp(2.3rem,7vw,5.5rem); }
+    .contact p { margin:1.2rem auto 2rem; color:var(--muted); }
+    footer { display:flex; justify-content:space-between; gap:1rem; width:min(1120px,calc(100% - 2.5rem)); margin:auto; padding:2rem 0 2.5rem; border-top:1px solid rgba(255,255,255,.07); color:#667987; font:500 .65rem ui-monospace,monospace; letter-spacing:.1em; text-transform:uppercase; }
+
+    /* SCROLL ANIMATIONS */
+    .reveal { opacity:0; filter:blur(8px); transform:translateY(24px); transition:opacity .8s ease,filter .8s ease,transform .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity:1; filter:none; transform:none; }
+    @keyframes pulse { 50% { opacity:.4; box-shadow:0 0 5px var(--ice); } }
+
+    /* CURSOR TRAIL */
+    .trail { position:fixed; z-index:30; width:5px; height:5px; left:0; top:0; border-radius:50%; background:#9be5ff; box-shadow:0 0 12px #79d7ff; pointer-events:none; transform:translate(-50%,-50%); will-change:transform,opacity; }
+    .cursor-dot,.cursor-ring { position:fixed; left:0; top:0; z-index:32; pointer-events:none; border-radius:50%; will-change:transform; }
+    .cursor-dot { width:6px; height:6px; background:#d8f7ff; box-shadow:0 0 12px #80dcff,0 0 24px rgba(94,206,255,.48); }
+    .cursor-ring { width:26px; height:26px; z-index:31; border:1px solid rgba(151,226,255,.48); box-shadow:0 0 14px rgba(74,190,240,.12); transition:width .18s,height .18s,border-color .18s; }
+    .cursor-ring.active { width:34px; height:34px; border-color:rgba(190,239,255,.8); }
+
+    /* RESPONSIVE */
+    @media (max-width:720px) { main { width:min(100% - 1.5rem,1120px); padding-top:5rem; } .section { margin-bottom:5rem; } .section-head { grid-template-columns:1fr; gap:.2rem; } .glass,.glass.wide { grid-column:span 12; min-height:230px; } .about-copy { grid-template-columns:1fr; gap:1.5rem; } .name { letter-spacing:-.06em; } .scroll-mark { display:none; } footer { width:calc(100% - 1.5rem); flex-direction:column; } }
+    @media (pointer:fine) { body,a,button { cursor:none; } }
+    @media (pointer:coarse) { .trail,.cursor-dot,.cursor-ring { display:none; } .hero-plate { transform:none!important; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; } .reveal { opacity:1; filter:none; transform:none; } .trail { display:none; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <header class="hero">
+    <div class="hero-inner hero-plate" id="heroPlate">
+      <p class="eyebrow">System online</p>
+      <h1 class="name" id="scramble" aria-label="Reck3d">Reck3d</h1>
+      <p class="tagline">Developer &amp; digital creator crafting precise experiences for the quiet edges of the internet.</p>
+      <nav class="quick-links" aria-label="Primary links">
+        <!-- ================= MY LINKS =================
+             Paste your real URLs into the three href values below. -->
+        <a href="https://discord.gg/hGv2fdurNp" target="_blank" rel="noopener noreferrer">Discord Server ↗</a>
+        <a href="https://www.instagram.com/recked912" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+        <a href="PASTE_PROJECTS_LINK_HERE" target="_blank" rel="noopener noreferrer">Projects ↗</a>
+      </nav>
+    </div>
+    <div class="scroll-mark" aria-hidden="true">Scroll</div>
+  </header>
+
+  <main id="main">
+    <section class="section reveal" id="about">
+      <div class="section-head"><span class="section-index">01 / PROFILE</span><div><h2>Built in the quiet.</h2><p class="section-intro">A focused approach to digital craft, where clarity and detail do the talking.</p></div></div>
+      <article class="glass wide tilt">
+        <div class="about-copy">
+          <p class="lead">I’m Reck3d — a developer who turns ideas into sharp, reliable digital products with a distinct point of view.</p>
+          <ul class="status-list"><li><span>Focus</span><strong>Web experiences</strong></li><li><span>Approach</span><strong>Minimal / precise</strong></li><li><span>Status</span><strong>Available for work</strong></li></ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head reveal"><span class="section-index">02 / SELECTED</span><div><h2>Projects</h2><p class="section-intro">A small selection of experiments, products, and systems. Replace these placeholders with your work.</p></div></div>
+      <div class="grid">
+        <article class="glass tilt reveal"><div class="card-meta"><span>Web / 2026</span><span class="arrow">↗</span></div><h3>Northstar</h3><p>A quiet command center for tracking goals, progress, and the signals that matter.</p><a class="project-link" href="#" aria-label="Open Northstar project placeholder"></a></article>
+        <article class="glass tilt reveal"><div class="card-meta"><span>Tool / 2026</span><span class="arrow">↗</span></div><h3>Signal</h3><p>A stripped-back monitoring interface built for clarity under pressure.</p><a class="project-link" href="#" aria-label="Open Signal project placeholder"></a></article>
+        <article class="glass tilt reveal"><div class="card-meta"><span>Concept / 2025</span><span class="arrow">↗</span></div><h3>Black Ice</h3><p>An identity system exploring restraint, atmosphere, and digital tactility.</p><a class="project-link" href="#" aria-label="Open Black Ice project placeholder"></a></article>
+        <article class="glass tilt reveal"><div class="card-meta"><span>Open source / 2025</span><span class="arrow">↗</span></div><h3>Frostline</h3><p>A lightweight component collection for deliberate, accessible interfaces.</p><a class="project-link" href="#" aria-label="Open Frostline project placeholder"></a></article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="skills">
+      <div class="section-head"><span class="section-index">03 / TOOLKIT</span><div><h2>Capabilities</h2><p class="section-intro">Tools change. The goal stays the same: make things that feel considered and work beautifully.</p></div></div>
+      <article class="glass wide tilt"><div class="card-meta"><span>Core stack</span><span>Always learning</span></div><div class="skills"><span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">JavaScript</span><span class="skill">UI Design</span><span class="skill">Creative Development</span><span class="skill">Accessibility</span><span class="skill">Performance</span><span class="skill">Git</span></div></article>
+    </section>
+
+    <section class="section reveal" id="contact">
+      <article class="glass wide contact tilt"><span class="section-index">04 / CONTACT</span><h2>Let’s build something<br>worth remembering.</h2><p>Have a project, question, or strange idea? My inbox is open.</p><div class="quick-links"><a href="#">Discord ↗</a><a href="#">Instagram ↗</a><a href="mailto:hello@example.com">Email ↗</a></div></article>
+    </section>
+  </main>
+  <footer><span>© <span id="year"></span> Reck3d</span><span>Designed in the cold / Built with care</span></footer>
+
+  <script>
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* SCRAMBLE TEXT */
+    (() => {
+      const el = document.querySelector('#scramble');
+      if (reduceMotion) return;
+      const target = 'Reck3d', chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let start = 0, holdUntil = 0;
+      function frame(now) {
+        if (!start) start = now;
+        if (holdUntil && now < holdUntil) return requestAnimationFrame(frame);
+        if (holdUntil) { holdUntil = 0; start = now; }
+        const progress = Math.min((now - start) / 1150, 1);
+        const fixed = Math.floor(progress * target.length);
+        el.innerHTML = [...target].map((letter,i) => i < fixed ? `<span class="resolved">${letter}</span>` : `<span class="scrambled">${chars[Math.floor(Math.random()*chars.length)]}</span>`).join('');
+        if (progress === 1) { el.textContent = target; holdUntil = now + 1900; }
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+
+    /* MOUSE TILT */
+    (() => {
+      const plate = document.querySelector('#heroPlate');
+      if (reduceMotion || !matchMedia('(pointer:fine)').matches) return;
+      let targetX=0,targetY=0,currentX=0,currentY=0,targetLightX=50,targetLightY=50,lightX=50,lightY=50,running=false;
+      function animate(){
+        currentX+=(targetX-currentX)*.09; currentY+=(targetY-currentY)*.09;
+        lightX+=(targetLightX-lightX)*.11; lightY+=(targetLightY-lightY)*.11;
+        plate.style.transform=`perspective(1100px) rotateX(${currentX}deg) rotateY(${currentY}deg)`;
+        plate.style.setProperty('--hero-x',`${lightX}%`); plate.style.setProperty('--hero-y',`${lightY}%`);
+        if(Math.abs(targetX-currentX)>.01||Math.abs(targetY-currentY)>.01||Math.abs(targetLightX-lightX)>.05||Math.abs(targetLightY-lightY)>.05) requestAnimationFrame(animate); else running=false;
+      }
+      function start(){ if(!running){ running=true; requestAnimationFrame(animate); } }
+      plate.addEventListener('pointermove',e=>{ const r=plate.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height; targetX=(.5-y)*6; targetY=(x-.5)*7; targetLightX=x*100; targetLightY=y*100; start(); });
+      plate.addEventListener('pointerleave',()=>{ targetX=0; targetY=0; targetLightX=50; targetLightY=50; start(); });
+    })();
+
+    if (!reduceMotion && matchMedia('(pointer:fine)').matches) document.querySelectorAll('.tilt').forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect(), x = (e.clientX-r.left)/r.width, y = (e.clientY-r.top)/r.height;
+        card.style.setProperty('--mx',`${x*100}%`); card.style.setProperty('--my',`${y*100}%`);
+        card.style.transform = `perspective(900px) rotateX(${(0.5-y)*4}deg) rotateY(${(x-0.5)*5}deg) translateY(-3px)`;
+      });
+      card.addEventListener('pointerleave', () => card.style.transform = '');
+    });
+
+    /* CURSOR TRAIL */
+    if (!reduceMotion && matchMedia('(pointer:fine)').matches) {
+      const dot=document.createElement('i'),ring=document.createElement('i'); dot.className='cursor-dot'; ring.className='cursor-ring'; document.body.append(dot,ring);
+      const dots = Array.from({length:11},(_,i) => { const d=document.createElement('i'); d.className='trail'; d.style.opacity=(1-i/11)*.32; document.body.appendChild(d); return {el:d,x:-30,y:-30}; });
+      let mx=-30,my=-30,rx=-30,ry=-30;
+      addEventListener('pointermove',e => { mx=e.clientX; my=e.clientY; dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`; },{passive:true});
+      document.querySelectorAll('a,button').forEach(el=>{ el.addEventListener('pointerenter',()=>ring.classList.add('active')); el.addEventListener('pointerleave',()=>ring.classList.remove('active')); });
+      function trail() { rx+=(mx-rx)*.17; ry+=(my-ry)*.17; ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`; let x=mx,y=my; dots.forEach((d,i) => { d.x += (x-d.x)*(.29-i*.011); d.y += (y-d.y)*(.29-i*.011); d.el.style.transform=`translate(${d.x}px,${d.y}px) translate(-50%,-50%) scale(${1-i*.065})`; x=d.x; y=d.y; }); requestAnimationFrame(trail); }
+      requestAnimationFrame(trail);
+    }
+
+    /* SNOW BACKGROUND */
+    (() => {
+      if (reduceMotion) return;
+      const canvas=document.querySelector('#snow'),ctx=canvas.getContext('2d'); let flakes=[],w,h,dpr;
+      function resize(){ dpr=Math.min(devicePixelRatio,2); w=innerWidth; h=innerHeight; canvas.width=w*dpr; canvas.height=h*dpr; canvas.style.width=w+'px'; canvas.style.height=h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); const count=Math.min(Math.floor(w*h/15000),85); flakes=Array.from({length:count},makeFlake); }
+      function makeFlake(top=false){ return {x:Math.random()*w,y:top?-10:Math.random()*h,r:.45+Math.random()*1.35,v:.18+Math.random()*.42,drift:(Math.random()-.5)*.14,a:.16+Math.random()*.38,phase:Math.random()*6.28}; }
+      function draw(t){ ctx.clearRect(0,0,w,h); flakes.forEach((f,i)=>{ f.y+=f.v; f.x+=f.drift+Math.sin(t*.0004+f.phase)*.04; if(f.y>h+5||f.x<-10||f.x>w+10) flakes[i]=makeFlake(true); ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,6.28); ctx.fillStyle=`rgba(210,241,255,${f.a})`; ctx.fill(); }); requestAnimationFrame(draw); }
+      addEventListener('resize',resize,{passive:true}); resize(); requestAnimationFrame(draw);
+    })();
+
+    /* SCROLL ANIMATIONS */
+    const reveals=document.querySelectorAll('.reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)) reveals.forEach(el=>el.classList.add('visible'));
+    else { const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); } }),{threshold:.12}); reveals.forEach(el=>observer.observe(el)); }
+    document.querySelector('#year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
